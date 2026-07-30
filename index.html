@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Study Guide Generator | Interactive Learning Hub</title>
+  <meta name="description" content="Generate comprehensive, multi-agent AI study guides with interactive outlines, notes, and review quizzes instantly.">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Header & Hero -->
+    <header class="app-header">
+      <div class="brand-badge">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <span>Multi-Agent AI Intelligence</span>
+      </div>
+      <h1 class="app-title">AI Study Guide Hub</h1>
+      <p class="app-subtitle">
+        Accelerate your learning. Powered by 3 specialized AI agents working together: <strong>Planner Agent</strong>, <strong>Teacher Agent</strong>, and <strong>Quiz Agent</strong>.
+      </p>
+    </header>
+
+    <!-- Topic Input Section -->
+    <section class="search-card">
+      <form id="studyForm" class="search-form">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="topicInput" 
+            class="search-input" 
+            placeholder="Enter any topic (e.g. Thermodynamics, Machine Learning, Organic Chemistry)..."
+            autocomplete="off"
+            required
+          >
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <button type="submit" id="generateBtn" class="generate-btn">
+          <span>Generate Guide</span>
+          <i class="fa-solid fa-bolt"></i>
+        </button>
+      </form>
+
+      <!-- Quick Topic Suggestions -->
+      <div class="suggested-topics">
+        <span class="suggested-label"><i class="fa-solid fa-lightbulb"></i> Try:</span>
+        <button class="topic-pill" data-topic="Thermodynamics">Thermodynamics</button>
+        <button class="topic-pill" data-topic="Quantum Computing">Quantum Computing</button>
+        <button class="topic-pill" data-topic="Cellular Respiration">Cellular Respiration</button>
+        <button class="topic-pill" data-topic="Machine Learning">Machine Learning</button>
+        <button class="topic-pill" data-topic="Macroeconomics">Macroeconomics</button>
+      </div>
+    </section>
+
+    <!-- Multi-Agent Live Execution Pipeline -->
+    <section id="pipelineSection" class="pipeline-section">
+      <div class="pipeline-title">
+        <i class="fa-solid fa-network-wired"></i>
+        <span>Multi-Agent Pipeline Status</span>
+      </div>
+      <div class="agents-grid">
+
+        <!-- Planner Agent Card -->
+        <div id="cardPlanner" class="agent-card">
+          <div class="agent-icon-box">
+            <i class="fa-solid fa-sitemap"></i>
+          </div>
+          <div class="agent-details">
+            <div class="agent-name">Planner Agent</div>
+            <div class="agent-role">Structuring Outline & Key Sections</div>
+            <div class="agent-status-badge">
+              <div class="status-spinner"></div>
+              <span class="status-text">Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teacher Agent Card -->
+        <div id="cardTeacher" class="agent-card">
+          <div class="agent-icon-box">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div class="agent-details">
+            <div class="agent-name">Teacher Agent</div>
+            <div class="agent-role">Generating Notes & Key Terms</div>
+            <div class="agent-status-badge">
+              <div class="status-spinner"></div>
+              <span class="status-text">Waiting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quiz Agent Card -->
+        <div id="cardQuiz" class="agent-card">
+          <div class="agent-icon-box">
+            <div class="status-spinner"></div>
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+          <div class="agent-details">
+            <div class="agent-name">Quiz Agent</div>
+            <div class="agent-role">Crafting Review Questions</div>
+            <div class="agent-status-badge">
+              <div class="status-spinner"></div>
+              <span class="status-text">Waiting</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Study Guide Workspace / Output -->
+    <main id="resultsWrapper" class="results-wrapper">
+
+      <div class="results-header">
+        <h2 id="topicTitleDisplay" class="topic-title-display">
+          <i class="fa-solid fa-book-open-reader"></i>
+          <span>Study Guide: Thermodynamics</span>
+        </h2>
+        <div class="action-bar">
+          <button id="copyBtn" class="action-btn" title="Copy full guide to clipboard">
+            <i class="fa-regular fa-copy"></i> Copy Markdown
+          </button>
+          <button id="downloadBtn" class="action-btn" title="Download Markdown document">
+            <i class="fa-solid fa-download"></i> Download .md
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="outline">
+          <i class="fa-solid fa-layer-group"></i> Outline
+        </button>
+        <button class="tab-btn" data-tab="notes">
+          <i class="fa-solid fa-book-bookmark"></i> Notes
+        </button>
+        <button class="tab-btn" data-tab="quiz">
+          <i class="fa-solid fa-circle-question"></i> Interactive Quiz
+        </button>
+        <button class="tab-btn" data-tab="full">
+          <i class="fa-solid fa-file-lines"></i> Full Guide
+        </button>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div id="tabOutline" class="tab-panel active">
+        <div id="outlineContent" class="markdown-body"></div>
+      </div>
+
+      <div id="tabNotes" class="tab-panel">
+        <div id="notesContent" class="markdown-body"></div>
+      </div>
+
+      <div id="tabQuiz" class="tab-panel">
+        <div id="quizContent" class="quiz-container"></div>
+      </div>
+
+      <div id="tabFull" class="tab-panel">
+        <div id="fullContent" class="markdown-body"></div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- JavaScript App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
